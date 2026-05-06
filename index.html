@@ -128,29 +128,7 @@ section.active{
   margin-top:10px;
   color:var(--muted);
   font-size:13px;
-  line-height:1.6;
-}
-
-.variants{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:12px;
-}
-
-.variants button{
-  border:none;
-  border-radius:10px;
-  padding:6px 10px;
-  background:rgba(255,255,255,.08);
-  color:white;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:700;
-}
-
-.variants button.active{
-  background:var(--accent);
+  line-height:1.7;
 }
 
 .trade{
@@ -380,21 +358,40 @@ Fair 🤝
 <h3>Add Unit</h3>
 
 <label>Unit</label>
+
 <select id="unitSelect"></select>
 
 <label>Amount</label>
+
 <input type="number" id="amount" min="1" value="1">
 
 <label>Variant</label>
 
 <select id="variant">
 
-<option value="normal">Normal</option>
-<option value="gold">Gold</option>
-<option value="rainbow">Rainbow</option>
-<option value="signed">Signed</option>
-<option value="goldsigned">Gold + Signed</option>
-<option value="rainbowsigned">Rainbow + Signed</option>
+<option value="normal">
+Normal
+</option>
+
+<option value="gold">
+Gold
+</option>
+
+<option value="rainbow">
+Rainbow
+</option>
+
+<option value="signed">
+Signed
+</option>
+
+<option value="goldsigned">
+Gold + Signed
+</option>
+
+<option value="rainbowsigned">
+Rainbow + Signed
+</option>
 
 </select>
 
@@ -736,21 +733,27 @@ rarity:"Exclusive"
 
 ];
 
-const Variants = {
+const VariantIcons = {
+
 normal:"",
 gold:"🟨",
 rainbow:"🌈",
 signed:"✍️",
 goldsigned:"🟨 ✍️",
 rainbowsigned:"🌈 ✍️"
+
 };
 
-const grid = document.getElementById("grid");
-const unitSelect = document.getElementById("unitSelect");
+const grid =
+document.getElementById("grid");
+
+const unitSelect =
+document.getElementById("unitSelect");
 
 Units.forEach((u,i)=>{
 
-const card = document.createElement("div");
+const card =
+document.createElement("div");
 
 card.className = "card";
 
@@ -766,34 +769,6 @@ Rarity: ${u.rarity}<br>
 Value: ${u.value}<br>
 Demand: ${u.demand}/10<br>
 Status: ${u.status}
-
-</div>
-
-<div class="variants">
-
-<button class="active">
-Normal
-</button>
-
-<button>
-Gold
-</button>
-
-<button>
-Rainbow
-</button>
-
-<button>
-Signed
-</button>
-
-<button>
-Gold + Signed
-</button>
-
-<button>
-Rainbow + Signed
-</button>
 
 </div>
 
@@ -855,13 +830,20 @@ const amount =
 const variant =
 document.getElementById("variant").value;
 
-const badge =
-Variants[variant];
+const icon =
+VariantIcons[variant];
 
-const value =
+let value = "???";
+
+if(
+variant === "normal" &&
 typeof unit.value === "number"
-? (unit.value * amount).toFixed(2)
-: "???";
+){
+
+value =
+(unit.value * amount).toFixed(2);
+
+}
 
 const el =
 document.createElement("div");
@@ -872,8 +854,8 @@ el.innerHTML = `
 
 <img src="${unit.img}">
 
-${badge
-? `<div class="badge">${badge}</div>`
+${icon
+? `<div class="badge">${icon}</div>`
 : ""
 }
 
@@ -890,7 +872,11 @@ ${value}
 </div>
 
 <span class="value">
-${typeof value === "number" ? value : 0}
+${variant === "normal"
+&& typeof unit.value === "number"
+? value
+: 0
+}
 </span>
 
 `;
