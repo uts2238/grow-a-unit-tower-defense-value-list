@@ -44,9 +44,9 @@ nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:16px 30px;
+  padding:16px 28px;
   background:rgba(0,0,0,.45);
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(10px);
   border-radius:0 0 22px 22px;
 }
 
@@ -65,19 +65,17 @@ nav button{
   color:var(--muted);
   font-weight:700;
   cursor:pointer;
-  transition:.2s;
 }
 
 nav button:hover{
   color:white;
-  transform:translateY(-2px);
 }
 
 section{
   display:none;
-  max-width:1400px;
-  margin:auto;
   padding:40px;
+  max-width:1500px;
+  margin:auto;
 }
 
 section.active{
@@ -89,17 +87,14 @@ section.active{
 }
 
 .hero img{
-  width:220px;
+  width:230px;
   border-radius:24px;
   box-shadow:0 0 40px rgba(255,255,255,.25);
 }
 
 .hero h1{
-  margin-top:22px;
   font-size:38px;
-  background:linear-gradient(90deg,#fff,#c4f1ff,#d5b3ff);
-  -webkit-background-clip:text;
-  color:transparent;
+  margin-top:20px;
 }
 
 .hero p{
@@ -108,58 +103,53 @@ section.active{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   gap:20px;
 }
 
-.value-card{
+.card{
   background:rgba(0,0,0,.35);
-  border-radius:24px;
+  border-radius:22px;
   padding:16px;
-  transition:.2s;
 }
 
-.value-card:hover{
-  transform:translateY(-4px);
-}
-
-.value-card img{
+.card img{
   width:100%;
   border-radius:16px;
 }
 
-.value-card b{
+.card b{
   display:block;
   margin-top:12px;
-  font-size:16px;
+  font-size:17px;
 }
 
-.value-line{
+.info{
   margin-top:10px;
   color:var(--muted);
   font-size:13px;
+  line-height:1.6;
 }
 
-.variant-row{
+.variants{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
-  justify-content:center;
   margin-top:12px;
 }
 
-.vbtn{
+.variants button{
   border:none;
-  background:rgba(255,255,255,.08);
-  color:white;
   border-radius:10px;
   padding:6px 10px;
+  background:rgba(255,255,255,.08);
+  color:white;
   cursor:pointer;
   font-size:11px;
   font-weight:700;
 }
 
-.vbtn.active{
+.variants button.active{
   background:var(--accent);
 }
 
@@ -169,32 +159,31 @@ section.active{
   flex-wrap:wrap;
 }
 
-.trade-side{
+.trade-box{
   flex:1;
   min-width:300px;
   background:rgba(0,0,0,.4);
-  border-radius:24px;
+  border-radius:22px;
   padding:20px;
 }
 
-.Unit{
+.unit{
   display:flex;
-  gap:12px;
   align-items:center;
+  gap:12px;
   background:rgba(255,255,255,.05);
-  border-radius:16px;
+  border-radius:14px;
   padding:12px;
   margin-bottom:12px;
   position:relative;
-  cursor:pointer;
 }
 
-.Unit img{
+.unit img{
   width:60px;
-  border-radius:14px;
+  border-radius:12px;
 }
 
-.overlay{
+.badge{
   position:absolute;
   top:5px;
   right:5px;
@@ -224,7 +213,6 @@ section.active{
   color:white;
   font-weight:700;
   cursor:pointer;
-  margin-top:10px;
 }
 
 .result{
@@ -237,7 +225,7 @@ section.active{
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.7);
+  background:rgba(0,0,0,.75);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -253,21 +241,9 @@ section.active{
 
 .modal-box{
   width:340px;
-  background:#151a30;
-  border-radius:24px;
+  background:#161b36;
+  border-radius:22px;
   padding:24px;
-}
-
-.modal-box h3{
-  margin-top:0;
-}
-
-.modal-box label{
-  display:block;
-  margin-top:14px;
-  margin-bottom:6px;
-  color:var(--muted);
-  font-size:13px;
 }
 
 .modal-box input,
@@ -276,16 +252,17 @@ section.active{
   padding:12px;
   border:none;
   border-radius:12px;
-  background:#1d2342;
+  background:#23294d;
   color:white;
-  outline:none;
+  margin-top:6px;
+  margin-bottom:14px;
 }
 
 @media(max-width:768px){
 
 nav{
   flex-direction:column;
-  gap:14px;
+  gap:12px;
 }
 
 nav div{
@@ -321,10 +298,9 @@ section{
 <b>Grow A Unit Tower Defense Value List</b>
 
 <div>
-<button onclick="show('home')">Home</button>
-<button onclick="show('values')">Value List</button>
-<button onclick="show('trade')">Trade Calculator</button>
-<button onclick="show('credits')">Credits</button>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('values')">Values</button>
+<button onclick="showPage('trade')">Trade Calc</button>
 </div>
 
 </nav>
@@ -337,8 +313,6 @@ section{
 
 <h1>Grow A Unit Tower Defense Value List</h1>
 
-<p>Track values, avoid L trades, become rich 💎</p>
-
 <p>1 value = 1k gems 💎</p>
 
 </div>
@@ -347,9 +321,9 @@ section{
 
 <section id="values">
 
-<h2>Unit Values</h2>
+<h2>Units</h2>
 
-<div class="grid" id="unitGrid"></div>
+<div class="grid" id="grid"></div>
 
 </section>
 
@@ -357,7 +331,7 @@ section{
 
 <div class="trade">
 
-<div class="trade-side" id="you">
+<div class="trade-box" id="you">
 
 <h3>Your Offer</h3>
 
@@ -374,7 +348,7 @@ Total:
 
 </div>
 
-<div class="trade-side" id="them">
+<div class="trade-box" id="them">
 
 <h3>Their Offer</h3>
 
@@ -393,26 +367,8 @@ Total:
 
 </div>
 
-<div class="result" id="res">
+<div class="result" id="result">
 Fair 🤝
-</div>
-
-</section>
-
-<section id="credits">
-
-<h2>Credits</h2>
-
-<div class="grid">
-
-<div class="value-card">
-<img src="https://cdn.discordapp.com/embed/avatars/0.png">
-<b>random</b>
-<div class="value-line">
-Made the site
-</div>
-</div>
-
 </div>
 
 </section>
@@ -424,37 +380,21 @@ Made the site
 <h3>Add Unit</h3>
 
 <label>Unit</label>
-<select id="UnitSelect"></select>
+<select id="unitSelect"></select>
 
 <label>Amount</label>
-<input type="number" id="amt" value="1" min="1">
+<input type="number" id="amount" min="1" value="1">
 
 <label>Variant</label>
+
 <select id="variant">
 
-<option value="normal">
-Normal
-</option>
-
-<option value="gold">
-Gold
-</option>
-
-<option value="rainbow">
-Rainbow
-</option>
-
-<option value="signed">
-Signed
-</option>
-
-<option value="goldsigned">
-Gold + Signed
-</option>
-
-<option value="rainbowsigned">
-Rainbow + Signed
-</option>
+<option value="normal">Normal</option>
+<option value="gold">Gold</option>
+<option value="rainbow">Rainbow</option>
+<option value="signed">Signed</option>
+<option value="goldsigned">Gold + Signed</option>
+<option value="rainbowsigned">Rainbow + Signed</option>
 
 </select>
 
@@ -468,131 +408,410 @@ Add Unit
 
 <script>
 
-/* =========================
-   NORMAL
-========================= */
-
 const Units = [
 
 {
-  name:"Noob",
-  img:"Noob.png",
-  base:1,
-  demand:5
-}
-
-];
-
-/* =========================
-   GOLD
-========================= */
-
-const UnitsGOLD = [
+name:"Cherry Blossom",
+img:"CherryBlossom.png",
+value:82.5,
+demand:3,
+status:"Dropping",
+rarity:"Secret"
+},
 
 {
-  name:"Noob",
-  img:"Noob.png",
-  base:5,
-  demand:7
-}
-
-];
-
-/* =========================
-   RAINBOW
-========================= */
-
-const UnitsRAINBOW = [
+name:"Zeus Blossom",
+img:"ZeusBlossom.png",
+value:110,
+demand:6,
+status:"Unstable",
+rarity:"Secret"
+},
 
 {
-  name:"Noob",
-  img:"Noob.png",
-  base:12,
-  demand:9
-}
-
-];
-
-/* =========================
-   SIGNED
-========================= */
-
-const UnitsSIGNED = [
+name:"Lemon & Lime",
+img:"LemonLime.png",
+value:130,
+demand:5,
+status:"Unstable",
+rarity:"Secret"
+},
 
 {
-  name:"Noob",
-  img:"Noob.png",
-  base:3,
-  demand:6
-}
-
-];
-
-/* =========================
-   GOLD + SIGNED
-========================= */
-
-const UnitsGOLDSIGNED = [
+name:"Bonanza Bloom",
+img:"BonanzaBloom.png",
+value:175,
+demand:6,
+status:"Fluctuating",
+rarity:"Secret"
+},
 
 {
-  name:"Noob",
-  img:"Noob.png",
-  base:15,
-  demand:10
-}
-
-];
-
-/* =========================
-   RAINBOW + SIGNED
-========================= */
-
-const UnitsRAINBOWSIGNED = [
+name:"Cursed Fruit",
+img:"CursedFruit.png",
+value:175,
+demand:5,
+status:"Fluctuating",
+rarity:"Secret"
+},
 
 {
-  name:"Noob",
-  img:"Noob.png",
-  base:30,
-  demand:10
+name:"Mecha Beanstalk",
+img:"MechaBeanstalk.png",
+value:325,
+demand:8,
+status:"Unstable",
+rarity:"Secret"
+},
+
+{
+name:"Grandmaster Sprinkler",
+img:"GrandmasterSprinkler.png",
+value:95,
+demand:9,
+status:"Rising",
+rarity:"Transcendent"
+},
+
+{
+name:"Candy Blossom",
+img:"CandyBlossom.png",
+value:70,
+demand:7,
+status:"Rising",
+rarity:"Transcendent"
+},
+
+{
+name:"Frost Candy",
+img:"FrostCandy.png",
+value:60,
+demand:4,
+status:"Stable",
+rarity:"Transcendent"
+},
+
+{
+name:"Venus Fly Trap",
+img:"VenusFlyTrap.png",
+value:40,
+demand:4,
+status:"Stable",
+rarity:"Transcendent"
+},
+
+{
+name:"Alien Apple",
+img:"AlienApple.png",
+value:35,
+demand:3,
+status:"Slowly Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"Zebrazinkle",
+img:"Zebrazinkle.png",
+value:35,
+demand:4,
+status:"Slowly Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"Bone Blossom",
+img:"BoneBlossom.png",
+value:32.5,
+demand:3,
+status:"Slowly Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"Octobloom",
+img:"Octobloom.png",
+value:30,
+demand:3,
+status:"Slowly Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"Crimson Thorn",
+img:"CrimsonThorn.png",
+value:20,
+demand:3,
+status:"Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"P.E.P.P.E.R",
+img:"PEPPER.png",
+value:12.5,
+demand:2.75,
+status:"Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"Mecha Moon Blossom",
+img:"MechaMoonBlossom.png",
+value:10,
+demand:0,
+status:"Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"Moon Blossom",
+img:"MoonBlossom.png",
+value:7.5,
+demand:3,
+status:"Dropping",
+rarity:"Transcendent"
+},
+
+{
+name:"Honey Sprinkler",
+img:"HoneySprinkler.png",
+value:"???",
+demand:0,
+status:"Unstable",
+rarity:"Exclusive"
+},
+
+{
+name:"Nectar Staff",
+img:"NectarStaff.png",
+value:"???",
+demand:0,
+status:"Stable",
+rarity:"Exclusive"
+},
+
+{
+name:"Hive Fruit",
+img:"HiveFruit.png",
+value:45,
+demand:0,
+status:"Fluctuating",
+rarity:"Exclusive"
+},
+
+{
+name:"Suncoil",
+img:"Suncoil.png",
+value:33.5,
+demand:0,
+status:"Slowly Rising",
+rarity:"Exclusive"
+},
+
+{
+name:"Kitsune",
+img:"Kitsune.png",
+value:21.25,
+demand:0,
+status:"Stable-Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Gems Thorn",
+img:"GemsThorn.png",
+value:17.5,
+demand:0,
+status:"Stable",
+rarity:"Exclusive"
+},
+
+{
+name:"Moon Staff",
+img:"MoonStaff.png",
+value:16.25,
+demand:0,
+status:"Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Magnifying Glass",
+img:"MagnifyingGlass.png",
+value:15,
+demand:0,
+status:"Stable-Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Soul Fruit",
+img:"SoulFruit.png",
+value:15,
+demand:0,
+status:"Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Corrupt Channeler",
+img:"CorruptChanneler.png",
+value:14.5,
+demand:0,
+status:"Stable-Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Reccal Wrench",
+img:"ReccalWrench.png",
+value:14.25,
+demand:0,
+status:"Stable-Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Farmer",
+img:"Farmer.png",
+value:13.5,
+demand:0,
+status:"Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Trowel",
+img:"Trowel.png",
+value:12.5,
+demand:0,
+status:"Stable-Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Star Caller",
+img:"StarCaller.png",
+value:12,
+demand:0,
+status:"Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Levelup Lolipop",
+img:"LevelupLolipop.png",
+value:12,
+demand:0,
+status:"Stable-Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Honeysuckle",
+img:"Honeysuckle.png",
+value:10,
+demand:0,
+status:"Unstable",
+rarity:"Exclusive"
+},
+
+{
+name:"Banana",
+img:"Banana.png",
+value:10,
+demand:0,
+status:"Stable-Slowly Dropping",
+rarity:"Exclusive"
+},
+
+{
+name:"Corrupted Kitsune",
+img:"CorruptedKitsune.png",
+value:6.75,
+demand:0,
+status:"Stable",
+rarity:"Exclusive"
 }
 
 ];
 
-/* =========================
-   ELEMENTS
-========================= */
+const Variants = {
+normal:"",
+gold:"🟨",
+rainbow:"🌈",
+signed:"✍️",
+goldsigned:"🟨 ✍️",
+rainbowsigned:"🌈 ✍️"
+};
 
-const unitGrid =
-document.getElementById("unitGrid");
+const grid = document.getElementById("grid");
+const unitSelect = document.getElementById("unitSelect");
 
-const UnitSelect =
-document.getElementById("UnitSelect");
+Units.forEach((u,i)=>{
 
-const modal =
-document.getElementById("modal");
+const card = document.createElement("div");
 
-const yt =
-document.getElementById("yt");
+card.className = "card";
 
-const tt =
-document.getElementById("tt");
+card.innerHTML = `
 
-const res =
-document.getElementById("res");
+<img src="${u.img}">
 
-const amt =
-document.getElementById("amt");
+<b>${u.name}</b>
 
-const variant =
-document.getElementById("variant");
+<div class="info">
 
-let currentSide = "you";
+Rarity: ${u.rarity}<br>
+Value: ${u.value}<br>
+Demand: ${u.demand}/10<br>
+Status: ${u.status}
 
-/* =========================
-   NAVIGATION
-========================= */
+</div>
 
-function show(id){
+<div class="variants">
+
+<button class="active">
+Normal
+</button>
+
+<button>
+Gold
+</button>
+
+<button>
+Rainbow
+</button>
+
+<button>
+Signed
+</button>
+
+<button>
+Gold + Signed
+</button>
+
+<button>
+Rainbow + Signed
+</button>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+const option =
+document.createElement("option");
+
+option.value = i;
+option.textContent = u.name;
+
+unitSelect.appendChild(option);
+
+});
+
+function showPage(id){
 
 document.querySelectorAll("section")
 .forEach(s=>s.classList.remove("active"));
@@ -602,316 +821,76 @@ document.getElementById(id)
 
 }
 
-show("home");
-
-/* =========================
-   REBUILD
-========================= */
-
-function rebuild(){
-
-unitGrid.innerHTML = "";
-
-Units.forEach((u,i)=>{
-
-const card =
-document.createElement("div");
-
-card.className = "value-card";
-
-card.innerHTML = `
-
-<img src="${u.img}">
-
-<b>${u.name}</b>
-
-<div class="variant-row">
-
-<button class="vbtn active" data-type="normal">
-Normal
-</button>
-
-<button class="vbtn" data-type="gold">
-Gold
-</button>
-
-<button class="vbtn" data-type="rainbow">
-Rainbow
-</button>
-
-<button class="vbtn" data-type="signed">
-Signed
-</button>
-
-<button class="vbtn" data-type="goldsigned">
-Gold + Signed
-</button>
-
-<button class="vbtn" data-type="rainbowsigned">
-Rainbow + Signed
-</button>
-
-</div>
-
-<div class="value-line">
-
-Value:
-<span class="shownVal">
-${u.base.toFixed(2)}
-</span>
-
-|
-
-Demand:
-<span class="shownDemand">
-${u.demand}
-</span>/10
-
-</div>
-
-`;
-
-const shownVal =
-card.querySelector(".shownVal");
-
-const shownDemand =
-card.querySelector(".shownDemand");
-
-const buttons =
-card.querySelectorAll(".vbtn");
-
-buttons.forEach(btn=>{
-
-btn.onclick = ()=>{
-
-buttons.forEach(
-b=>b.classList.remove("active")
-);
-
-btn.classList.add("active");
-
-let list = Units;
-
-switch(btn.dataset.type){
-
-case "gold":
-list = UnitsGOLD;
-break;
-
-case "rainbow":
-list = UnitsRAINBOW;
-break;
-
-case "signed":
-list = UnitsSIGNED;
-break;
-
-case "goldsigned":
-list = UnitsGOLDSIGNED;
-break;
-
-case "rainbowsigned":
-list = UnitsRAINBOWSIGNED;
-break;
-
-}
-
-const found =
-list.find(x=>x.name===u.name);
-
-if(found){
-
-shownVal.textContent =
-found.base.toFixed(2);
-
-shownDemand.textContent =
-found.demand;
-
-}
-
-};
-
-});
-
-unitGrid.appendChild(card);
-
-});
-
-populateSelect();
-
-}
-
-rebuild();
-
-/* =========================
-   SELECT
-========================= */
-
-function populateSelect(){
-
-UnitSelect.innerHTML = "";
-
-Units.forEach((u,i)=>{
-
-const o =
-document.createElement("option");
-
-o.value = i;
-
-o.textContent = u.name;
-
-UnitSelect.appendChild(o);
-
-});
-
-}
-
-/* =========================
-   MODAL
-========================= */
+let currentSide = "you";
 
 function openModal(side){
 
 currentSide = side;
 
-modal.classList.add("show");
+document.getElementById("modal")
+.classList.add("show");
 
 }
 
-modal.addEventListener("click",(e)=>{
+document.getElementById("modal")
+.onclick = e=>{
 
-if(e.target===modal){
+if(e.target.id==="modal"){
 
-modal.classList.remove("show");
-
-}
-
-});
-
-/* =========================
-   TOTALS
-========================= */
-
-function updateTotals(){
-
-const sum = (side)=>
-
-[...document.querySelectorAll(
-`#${side} .value`
-)]
-
-.reduce((a,b)=>
-
-a + (+b.textContent || 0)
-
-,0);
-
-const y = sum("you");
-
-const t = sum("them");
-
-yt.textContent = y.toFixed(2);
-
-tt.textContent = t.toFixed(2);
-
-const d = y - t;
-
-res.textContent =
-
-d >= 0.6
-? "Lose 💀"
-
-: d <= -0.6
-? "Win 🤑"
-
-: "Fair 🤝";
+document.getElementById("modal")
+.classList.remove("show");
 
 }
 
-/* =========================
-   ADD UNIT
-========================= */
+};
 
 function addUnit(){
 
-const index =
-+UnitSelect.value;
+const unit =
+Units[unitSelect.value];
 
 const amount =
-+amt.value || 1;
++document.getElementById("amount").value;
 
-const base =
-Units[index];
+const variant =
+document.getElementById("variant").value;
 
-if(!base) return;
-
-let list = Units;
-
-let badge = "";
-
-switch(variant.value){
-
-case "gold":
-list = UnitsGOLD;
-badge = "🟨";
-break;
-
-case "rainbow":
-list = UnitsRAINBOW;
-badge = "🌈";
-break;
-
-case "signed":
-list = UnitsSIGNED;
-badge = "✍️";
-break;
-
-case "goldsigned":
-list = UnitsGOLDSIGNED;
-badge = "🟨 ✍️";
-break;
-
-case "rainbowsigned":
-list = UnitsRAINBOWSIGNED;
-badge = "🌈 ✍️";
-break;
-
-}
-
-const final =
-list[index] || base;
+const badge =
+Variants[variant];
 
 const value =
-(final.base * amount).toFixed(2);
+typeof unit.value === "number"
+? (unit.value * amount).toFixed(2)
+: "???";
 
 const el =
 document.createElement("div");
 
-el.className = "Unit";
+el.className = "unit";
 
 el.innerHTML = `
 
-<img src="${base.img}">
+<img src="${unit.img}">
 
 ${badge
-? `<div class="overlay">${badge}</div>`
+? `<div class="badge">${badge}</div>`
 : ""
 }
 
 <div>
 
 <b>
-${base.name} x${amount}
+${unit.name} x${amount}
 </b>
 
-<div style="color:var(--muted);font-size:13px;">
-Demand ${final.demand}/10
+<div style="font-size:13px;color:var(--muted);">
+${value}
 </div>
 
 </div>
 
 <span class="value">
-${value}
+${typeof value === "number" ? value : 0}
 </span>
 
 `;
@@ -930,9 +909,48 @@ document.querySelector(
 
 .appendChild(el);
 
-modal.classList.remove("show");
+document.getElementById("modal")
+.classList.remove("show");
 
 updateTotals();
+
+}
+
+function updateTotals(){
+
+const calc = side =>
+
+[...document.querySelectorAll(
+`#${side} .value`
+)]
+
+.reduce((a,b)=>
+
+a + (+b.textContent || 0)
+
+,0);
+
+const y = calc("you");
+const t = calc("them");
+
+document.getElementById("yt")
+.textContent = y.toFixed(2);
+
+document.getElementById("tt")
+.textContent = t.toFixed(2);
+
+const d = y - t;
+
+document.getElementById("result")
+.textContent =
+
+d >= 0.6
+? "Lose 💀"
+
+: d <= -0.6
+? "Win 🤑"
+
+: "Fair 🤝";
 
 }
 
